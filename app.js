@@ -1,106 +1,123 @@
-console.log("Hello World");
+// get the buttons
+const rockBtn = document.querySelector(".rock");
+const paperBtn = document.querySelector(".paper");
+const scissorBtn = document.querySelector(".scissor");
 
-// Create a function that computer return "rock", "paper" or "scissor"
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        console.log(e.target.className);
+
+        switch (e.target.className) {
+            case "rock":
+                playRound(e.target.className, getComputerChoice());
+                break;
+            case "paper": 
+                playRound(e.target.className, getComputerChoice());
+                break;
+            case "scissor":
+                playRound(e.target.className, getComputerChoice());
+        }
+
+    })
+})
+
+// rockBtn.addEventListener("click", playRound(getHumanChoice(), getComputerChoice()))
+
+// create a function to get the computer choice
 function getComputerChoice() {
-
-    // create a random number between 1 and 3
-    let randomNumber = Math.floor(Math.random() * 3) + 1;
+    let randomNumber = Math.floor(Math.random() * 3) + 1; // create a random number between 1 and 3
 
     // depends of the random number, return choices
     if (randomNumber == 1) {
         return "rock";
-    } else if (randomNumber == 2) {
+    }
+    else if (randomNumber == 2) {
         return "paper";
-    } else {
+    }
+    else {
         return "scissor"
     }
 }
 
-// Create a function that human return "rock", "paper" or "scissor"
-function getHumanChoice() {
+// create a function to get human choice
+function getUserChoice() {
 
     // ask the user a choice
-    let humanChoice = prompt("rock, paper or scissor").toLowerCase();
+    // let userChoice = prompt("rock, paper or scissor").toLowerCase();
+    let userChoice = "rock, paper or scissor".toLowerCase();
 
-    return humanChoice;
+    return userChoice;
 }
 
 // store the computer choice in a variable
 let computerChoice = getComputerChoice();
 
 // store the human choice in a variable
-// let humanChoice = getHumanChoice();
+// let userChoice = getUserChoice();
+// console.log(`User: ${getUserChoice}`)
 
 
 // global variables for store the score
 let computerScore = 0;
-let humanScore = 0;
+let userScore = 0;
 
 
 // Create a function named playGame that call playRound 5 times
-function playGame() {
+// function playGame() {
 
-    // Create a function "playRound" to play one round
-    // the function accept the human and computer choice
-    function playRound(humanChoice, computerChoice) {
+// Create a function "playRound" to play one round
+// the function accept the human and computer choice
+function playRound(userChoice, computerChoice) {
+    console.log("User: " + userChoice);
+    console.log("Computer: " + computerChoice);
 
-        // first we are going to write the human win options
-        if (humanChoice == "rock" && computerChoice == "scissor") {
+    // first we are going to write the user win options
+    if (userChoice == "rock" && computerChoice == "scissor") {
 
-            // show the winner
-            console.log("Human Wins");
+        // show the winner
+        console.log("user Wins");
 
-            // increase human score
-            humanScore = humanScore + 1;
+        // increase user score
+        userScore = userScore + 1;
 
-        } else if (humanChoice == "paper" && computerChoice == "rock") {
-            console.log("Human Wins");
-            humanScore = humanScore + 1;
+    } else if (userChoice == "paper" && computerChoice == "rock") {
+        console.log("user Wins");
+        userScore = userScore + 1;
 
-        } else if (humanChoice == "scissor" && computerChoice == "paper") {
-            console.log("Human Wins");
-            humanScore = humanScore + 1;
+    } else if (userChoice == "scissor" && computerChoice == "paper") {
+        console.log("user Wins");
+        userScore = userScore + 1;
 
-            // second we write the computer win options
-        } else if (humanChoice == "rock" && computerChoice == "paper") {
-            console.log("Computer Wins");
-            computerScore = computerScore + 1;
-        } else if (humanChoice == "paper" && computerChoice == "scissor") {
-            console.log("Computer Wins");
-            computerScore = computerScore + 1;
-        } else if (humanChoice == "scissor" && computerChoice == "rock") {
-            console.log("Computer Wins");
-            computerScore = computerScore + 1;
+        // second we write the computer win options
+    } else if (userChoice == "rock" && computerChoice == "paper") {
+        console.log("Computer Wins");
+        computerScore = computerScore + 1;
+    } else if (userChoice == "paper" && computerChoice == "scissor") {
+        console.log("Computer Wins");
+        computerScore = computerScore + 1;
+    } else if (userChoice == "scissor" && computerChoice == "rock") {
+        console.log("Computer Wins");
+        computerScore = computerScore + 1;
 
-            // third we write tied options
-        } else if (humanChoice == "rock" && computerChoice == "rock") {
-            console.log("Tied");
-        } else if (humanChoice == "paper" && computerChoice == "paper") {
-            console.log("Tied");
-        } else if (humanChoice == "scissor" && computerChoice == "scissor") {
-            console.log("Tied");
-        }
+        // third we write tied options
+    } else if (userChoice == "rock" && computerChoice == "rock") {
+        console.log("Tied");
+    } else if (userChoice == "paper" && computerChoice == "paper") {
+        console.log("Tied");
+    } else if (userChoice == "scissor" && computerChoice == "scissor") {
+        console.log("Tied");
     }
-
-    playRound(getHumanChoice(), computerChoice);
-    console.log("Human Score: " + humanScore);
-    console.log("Computer Score: " + computerScore);
-    playRound(getHumanChoice(), computerChoice);
-     console.log("Human Score: " + humanScore);
-    console.log("Computer Score: " + computerScore);
-    playRound(getHumanChoice(), computerChoice);
-    console.log("Human Score: " + humanScore);
-    console.log("Computer Score: " + computerScore);
-    playRound(getHumanChoice(), computerChoice);
-     console.log("Human Score: " + humanScore);
-    console.log("Computer Score: " + computerScore);
-    playRound(getHumanChoice(), computerChoice);
-    console.log("Human Score: " + humanScore);
-    console.log("Computer Score: " + computerScore);
-    
 }
 
-playGame();
+// playRound(userChoice, computerChoice);
+// playRound(userChoice, computerChoice);
+playRound(getUserChoice(), getComputerChoice);
+console.log("user Score: " + userScore);
+playRound(getUserChoice(), getComputerChoice);
+console.log("user Score: " + userScore);
+
 
 
 
